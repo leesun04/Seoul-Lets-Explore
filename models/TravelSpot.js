@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 
-module.exports = class Tourist extends Sequelize.Model {
+module.exports = class TravelSpot extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            touristId: {
+            tourId: {
                 type: Sequelize.BIGINT,
                 allowNull: false,
                 primaryKey: true
@@ -52,8 +52,8 @@ module.exports = class Tourist extends Sequelize.Model {
             sequelize,
             timestamps: false,
             // underscored: false,
-            modelName: 'Tourist',
-            tableName: 'tourists',
+            modelName: 'TravelSpot',
+            tableName: 'TravelSpots',
             paranoid: false,
             charset: 'utf8mb4',
             collate: 'utf8mb4_general_ci',

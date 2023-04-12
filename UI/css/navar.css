@@ -1,0 +1,13 @@
+.navbar-brand{
+    color: #212529;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .navbar{
+    background-color: pink;
+  }
+  nav{
+    height: 100%;
+    padding-top: 60px;
+  }
+  

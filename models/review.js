@@ -13,7 +13,6 @@ module.exports = class Review extends Sequelize.Module {
               type: Sequelize.STRING,
               allowNull: false  
             }
-            
         })
     }
 }

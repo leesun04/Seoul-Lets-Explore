@@ -19,7 +19,7 @@ db.TravelSpot = TravelSpot;
 User.init(sequelize);
 TravelSpot.init(sequelize);
 
-User.associate(db);
-TravelSpot.associate(db);
+// User.associate(db);
+// TravelSpot.associate(db);
 
 module.exports = db;

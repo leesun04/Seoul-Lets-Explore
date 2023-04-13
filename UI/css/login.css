@@ -19,7 +19,7 @@ form {
     outline: none;
   }
   
-  /* 버튼 스타일 */
+  /* 버튼 스타일
   button[type="submit"],
   button[type="button"] {
     width: 300px;
@@ -31,6 +31,44 @@ form {
     background-color: #4CAF50;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+  } */
+  button.login-btn {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    background-color: #4CAF50;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    /* 로그인 버튼에 대한 스타일 */
+  }
+
+  button.logout-btn {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    background-color: #4CAF50;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    /* 로그아웃 버튼에 대한 스타일 */
+  }
+
+  button.signup-btn {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+    background-color: #4CAF50;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    /* 회원가입 버튼에 대한 스타일 */
   }
   
   button[type="submit"]:hover,
@@ -40,8 +78,16 @@ form {
   
   /* 카카오 로그인 버튼 스타일 */
   button[type="button"].kakao-login {
+    width: 300px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
     background-color: #FFEB00;
     color: black;
+    transition: all 0.3s ease-in-out;
+
   }
   
   button[type="button"].kakao-login:hover {

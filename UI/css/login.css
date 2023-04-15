@@ -1,11 +1,22 @@
 /* 전체 폼 스타일 */
-form {
+  /* .login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    justify-content: center;
+    height: 100vh;
+    background: url('/UI/눈빔.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(5px); 이미지를 흐리게 만듭니다.
+  } */
+  form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
   }
-  
+
   /* 입력 필드 스타일 */
   input[type="text"],
   input[type="password"] {
@@ -18,20 +29,7 @@ form {
     font-size: 16px;
     outline: none;
   }
-  
-  /* 버튼 스타일
-  button[type="submit"],
-  button[type="button"] {
-    width: 300px;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    color: white;
-    background-color: #4CAF50;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  } */
+
   button.login-btn {
     width: 300px;
     height: 40px;
@@ -73,7 +71,7 @@ form {
   
   button[type="submit"]:hover,
   button[type="button"]:hover {
-    background-color: #3e8e41;
+    background-color: rgb(240, 240, 240);
   }
   
   /* 카카오 로그인 버튼 스타일 */

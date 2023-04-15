@@ -41,13 +41,13 @@ router.route('/sign-up')
 // localhost:5000/user/login
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
-        if (user) req.login(user, loginError =>res.redirect('/'));
-        else res.send({
-            result: 'fail',
-            error: '없는 정보입니다'
-        })
+      if (user) {
+        req.login(user, loginError => res.redirect('/'));
+      } else {
+        res.redirect('/user/login?result=false&error=일치하지 않거나 없는 정보입니다.');
+      }
     })(req, res, next);
-});
+  });  
 
 // localhost:5000/user/logout
 router.get('/logout', (req, res, next) => {

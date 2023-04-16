@@ -59,7 +59,7 @@ module.exports = class TravelSpot extends Sequelize.Model {
             collate: 'utf8mb4_general_ci',
         });
     }
-    // static associate(db) {
-    //     db.Tourist.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId'});
-    // }
+    static associate(db) {
+        db.TravelSpot.hasMany(db.Review, { foreignKey: 'tourId', sourceKey: 'tourId', onDelete: 'cascade' });
+    }
 };

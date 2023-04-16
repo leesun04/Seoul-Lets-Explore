@@ -14,6 +14,8 @@ const passport = require('passport'); // passport 패키지
 const passportConfig = require('./passport'); // 
 
 const userRouter = require('./routes/user');
+const reviewRouter = require('./routes/review');
+
 
 dotenv.config(); // .env 파일을 읽어서 process.env로 만든다. (dotenv => dot(.) + env) 비밀 키들을 관리하기 위함.
 passportConfig(); // 초기 세팅 1
@@ -72,6 +74,7 @@ app.use(passport.session()); // 세션 객체의 유저정보를 저장해주는
 
 
 app.use('/user', userRouter);
+app.use
 
 app.use((req, res, next) => {
     res.locals.title = require('./package.json').name;

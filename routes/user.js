@@ -39,15 +39,23 @@ router.route('/sign-up')
     })
 
 // localhost:5000/user/login
+// 서버 코드
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (authError, user, info) => {
       if (user) {
-        req.login(user, loginError => res.redirect('/'));
+        req.login(user, loginError => {
+          // 로그인 성공 시 result 값을 'true'로 설정하고 메인 페이지로 이동
+          res.cookie('result', 'true');
+          res.redirect('/');
+        });
       } else {
-        res.redirect('/user/login?result=false&error=일치하지 않거나 없는 정보입니다.');
+        // 로그인 실패 시 result 값을 'false'로 설정하고 다시 로그인 페이지로 이동
+        res.cookie('result', 'false');
+        res.redirect('/login');
       }
     })(req, res, next);
-  });  
+  });
+  
 
 // localhost:5000/user/logout
 router.get('/logout', (req, res, next) => {

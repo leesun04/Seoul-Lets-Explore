@@ -15,7 +15,7 @@ module.exports = class User extends Sequelize.Model {
             },
             password: {
                 type: Sequelize.STRING(100),
-                allowNull: true
+                allowNull: false
             },
             name: {
                 type: Sequelize.STRING(20),
@@ -32,8 +32,8 @@ module.exports = class User extends Sequelize.Model {
             collate: 'utf8mb4_general_ci',
         });
     }
-    static associate(db) {
-        db.User.hasMany(db.Review, { foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade' });
-        db.User.hasMany(db.TravelSpot, {foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade'});
-    }
+    // static associate(db) {
+    //     db.User.hasMany(db.Review, { foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade' });
+    //     db.User.hasMany(db.TravelSpot, {foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade'});
+    // }
 };

@@ -53,13 +53,13 @@ module.exports = class TravelSpot extends Sequelize.Model {
             timestamps: false,
             // underscored: false,
             modelName: 'TravelSpot',
-            tableName: 'TravelSpots',
+            tableName: 'travelSpots',
             paranoid: false,
             charset: 'utf8mb4',
             collate: 'utf8mb4_general_ci',
         });
     }
-    static associate(db) {
-        db.TravelSpot.hasMany(db.Review, { foreignKey: 'tourId', sourceKey: 'tourId', onDelete: 'cascade' });
-    }
+    // static associate(db) {
+    //     db.TravelSpot.hasMany(db.Review, { foreignKey: 'tourId', sourceKey: 'tourId', onDelete: 'cascade' });
+    // }
 };

@@ -22,8 +22,8 @@ Review.init(sequelize);
 User.init(sequelize);
 TravelSpot.init(sequelize);
 
-User.associate(db);
-TravelSpot.associate(db);
-Review.associate(db);
+// User.associate(db);
+// TravelSpot.associate(db);
+// Review.associate(db);
 
 module.exports = db;

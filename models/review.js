@@ -22,8 +22,8 @@ module.exports = class Review extends Sequelize.Model {
             collate: 'utf8mb4_general_ci',
         });
     }
-    static associate(db) {
-        db.Review.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId' });
-        db.Review.belongsTo(db.TravelSopt, { foreignKey: 'tourId', targetKey: 'tourId' });
-    }
+    // static associate(db) {
+    //     db.Review.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId' });
+    //     db.Review.belongsTo(db.TravelSopt, { foreignKey: 'tourId', targetKey: 'tourId' });
+    // }
 };

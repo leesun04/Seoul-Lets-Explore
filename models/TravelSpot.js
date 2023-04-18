@@ -6,11 +6,13 @@ module.exports = class TravelSpot extends Sequelize.Model {
             tourId: {
                 type: Sequelize.BIGINT,
                 allowNull: false,
-                primaryKey: true
+                primaryKey: true,
+                autoIncrement: true
+
             },//관광지 id
             name: {
                  type: Sequelize.STRING,
-                 allowNull: false
+                 allowNull: true
             },//관광지 이름
             postal: {
                 type: Sequelize.INTEGER,
@@ -18,11 +20,11 @@ module.exports = class TravelSpot extends Sequelize.Model {
             },//우편번호
             address: {
                 type: Sequelize.TEXT,
-                allowNull: false
+                allowNull: true
             },//주소
             latitude: {
                 type: Sequelize.DOUBLE,
-                allowNull: false
+                allowNull: true
             },//위도
             longitude: {
                 type: Sequelize.DOUBLE,

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<head>
+    <title>관광지 리스트</title>
+    <link rel="stylesheet" href="/css/login.css">
+
+</head>
+<body>
+    <style>
+        button{
+            width: 200px;
+            height: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            /* 로그인 버튼에 대한 스타일 */
+          }
+    </style>
+    <p>
+        관광지 정보<br>
+        {% for travelSpot in travelSpots %} <!--가게 리스트 가져오기-->
+            <button type = "button" onclick="location.href='http://localhost:{{port}}/{{api}}/{{travelSpot.tourId}}'">{{travelSpot.name}}</button><br>
+        {% endfor %}
+    </p>
+    <button type = "button" onclick="location.href='http://localhost:{{port}}/'">뒤로 가기</button><br>
+</body>
+</html>

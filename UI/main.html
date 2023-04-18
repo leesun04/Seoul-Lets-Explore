@@ -15,7 +15,7 @@
     <nav class="navbar sticky-top">
       <div class="container-fluid">
           <div class="mx-auto">
-          <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">서울시 관광 안내 웹사이트</a>
+          <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">Seoul Let's Explore</a>
           </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
                   <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/UI/search.html">검색창</a>
+                  <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">정보창</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/map.html">지도창</a>
@@ -41,6 +41,9 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/community.html">커뮤니티 게시판</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
                 </li>
               </ul>
             </div>
@@ -60,24 +63,9 @@
           </div>
         </div>
       </div>
-  
       <footer class="bg-light py-5">
         <div class="container">
           <div class="row">
-            <!-- <div class="col-lg-6">
-              <h2 class="mb-4">About</h2>
-              <p>이 웹사이트는 Bootstrap을 이용하여 만들어졌습니다.</p>
-            </div>
-            <div class="col-lg-3">
-              <h2 class="mb-4">Site Links</h2>
-              <ul class="list-unstyled">
-                <li><a onclick="location.href='http://localhost:{{port}}'">Home</a></li>
-                <li><a href="/UI/search.html">검색창</a></li>
-                <li><a href="/map.html">지도창</a></li>
-                <li><a href="/UI/user.html">사용자 페이지</a></li>
-                <li><a href="/community.html">커뮤니티 게시판</a></li>
-              </ul>
-            </div> -->
             <div class="col-lg-3">
               <h2 class="mb-4">Social</h2>
               <ul class="list-unstyled">
@@ -92,7 +80,7 @@
 
      <!-- <form id="login-form" action="/user/login" method="post"> -->
   <!-- 로그아웃 버튼 -->
-  <button type="button" class="logout-btn" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</button>
+  <!-- <button type="button" class="logout-btn" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</button> -->
 {% else %}
   <!-- 전체 폼 -->
   <form id="login-form" class= "login-form" action="/user/login" method="post">

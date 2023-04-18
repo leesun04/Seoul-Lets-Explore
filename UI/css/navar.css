@@ -4,10 +4,15 @@
     font-weight: bold;
   }
   .navbar{
-    background-color: rgb(240, 240, 240);
+    background-color: #fcd752;
   }
   nav{
     height: 100%;
     padding-top: 60px;
   }
+  footer {
+    background-color: #333; /* 원하는 배경 색으로 변경 */
+    color: white; /* 글자 색을 흰색으로 변경 */
+  }
+  
   

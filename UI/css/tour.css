@@ -1,0 +1,40 @@
+.tour-listButton {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .tour-item {
+    position: relative;
+  }
+  
+  button.tour-form {
+    width: 250px;
+    height: 60px;
+    border: none;
+    border-radius: 10px;
+    font-size: 10px;
+    color: white;
+    background-color: #4CAF50;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  button.tour-form:hover {
+    background-color: #3e8e41;
+  }
+  
+  img.tour-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+    z-index: -1;
+  }
+  

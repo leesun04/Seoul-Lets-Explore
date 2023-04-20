@@ -1,6 +1,5 @@
 const path = require('path');
 
-const fs = require('fs')
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
@@ -30,13 +29,7 @@ nunjucks.configure(path.join(__dirname, 'UI'), {
     watch: true,
 });
 
-// app.get('/UI', function(req,res){
-//     fs.readFile('하남.jpg',function(error, data){
-//         res.writeHead(3000,{'Content-Type': 'main/html'});
-//         res.end(data);
-//     });
-// })
-app.use(express.static('UI'));
+app.use(express.static('UI'));//css 적용한다는 의미
 
 sequelize.sync({ force: false })
     .then(() => console.log('데이터베이스 연결 성공'))

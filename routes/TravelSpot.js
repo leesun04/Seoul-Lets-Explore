@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const { isLoggedIn } = require('./helpers');
-const { Tourist, TravelSpot } = require('../models');
+const { TravelSpot } = require('../models');
 const router = express.Router();
 
 router.get('/', isLoggedIn, async(req,res,next)=>{

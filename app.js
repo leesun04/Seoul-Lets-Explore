@@ -15,6 +15,7 @@ const passportConfig = require('./passport'); //
 const userRouter = require('./routes/user');
 const reviewRouter = require('./routes/review');
 const travelSpots = require('./routes/travelSpot');
+const mapRouter = require('./routes/map');
 
 
 dotenv.config(); // .env 파일을 읽어서 process.env로 만든다. (dotenv => dot(.) + env) 비밀 키들을 관리하기 위함.
@@ -28,7 +29,6 @@ nunjucks.configure(path.join(__dirname, 'UI'), {
     express: app,
     watch: true,
 });
-
 app.use(express.static('UI'));//css 적용한다는 의미
 
 sequelize.sync({ force: false })
@@ -66,10 +66,14 @@ app.use(passport.initialize());
 //req.session 객체에 passport 정보를 저장함.
 app.use(passport.session()); // 세션 객체의 유저정보를 저장해주는 일
 
+// app.get('/', (req,res)=>{
+//     res.sendFile(path.join(__dirname, '/map.html'));
+// })
 
 app.use('/user', userRouter);
 app.use('/review', reviewRouter);
 app.use('/travelSpot', travelSpots);
+app.use('/map', mapRouter);
 
 app.use((req, res, next) => {
     res.locals.title = require('./package.json').name;

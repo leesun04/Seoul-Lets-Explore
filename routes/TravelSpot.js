@@ -1,8 +1,9 @@
 const path = require('path');
 const express = require('express');
-const { isLoggedIn } = require('./helpers');
 const { TravelSpot } = require('../models');
 const router = express.Router();
+const { isLoggedIn } = require('./helpers');
+
 
 router.get('/', isLoggedIn, async(req,res,next)=>{
     try{

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const User = require('./user');
-const TravelSpot = require('./travelSpot');
+const TravelSpot = require('./TravelSpot');
 const Review = require('./review');
 
 const env = process.env.NODE_ENV || 'development';

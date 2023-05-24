@@ -13,8 +13,7 @@ const passport = require('passport'); // passport 패키지
 const passportConfig = require('./passport'); // 
 
 const userRouter = require('./routes/user');
-const reviewRouter = require('./routes/review');
-const travelSpots = require('./routes/travelSpot');
+const travelSpots = require('./routes/TravelSpot');
 const mapRouter = require('./routes/map');
 const pageRouter = require('./routes/page');
 
@@ -22,7 +21,7 @@ dotenv.config(); // .env 파일을 읽어서 process.env로 만든다. (dotenv =
 passportConfig(); // 초기 세팅 1
 
 const app = express();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 
 app.set('view engine', 'html');
 nunjucks.configure(path.join(__dirname, 'UI'), {
@@ -71,14 +70,14 @@ app.use(passport.session()); // 세션 객체의 유저정보를 저장해주는
 // })
 
 app.use('/user', userRouter);
-app.use('/review', reviewRouter);
 app.use('/travelSpot', travelSpots);
 app.use('/map', mapRouter);
 app.use('/page', pageRouter)
 
 app.use((req, res, next) => {
     res.locals.title = require('./package.json').name;
-    res.locals.port = app.get('port');
+    res.locals.port = process.env.PORT;
+    console.log(process.env.PORT);
     res.locals.user = req.user;
     res.render('main');
 });

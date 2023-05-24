@@ -25,9 +25,8 @@ router.get('/info/:tourId', async(req,res,next) => {
             where: {tourId: req.params.tourId}
         });
         res.render('tour-info',{
-            travelSpot,
-            prot: process.env.PORT
-        });
+            port: process.env.PORT,
+            travelSpot        });
         // res.json('tour-info',{
         //     result: "success",
         //     message: "하나의 관광지 정보 조회에 성공했습니다",

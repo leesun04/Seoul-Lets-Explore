@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 const User = require('./user');
 const TravelSpot = require('./TravelSpot');
-const Review = require('./review');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
@@ -16,9 +15,7 @@ db.Sequelize = Sequelize;
 
 db.User = User;
 db.TravelSpot = TravelSpot;
-db.Review = Review;
 
-Review.init(sequelize);
 User.init(sequelize);
 TravelSpot.init(sequelize);
 

@@ -62,6 +62,6 @@ module.exports = class TravelSpot extends Sequelize.Model {
         });
     }
     static associate(db) {
-        db.TravelSpot.belongTO(db.User, )
+        db.TravelSpot.belongsTO(db.User, )
     } 
 };

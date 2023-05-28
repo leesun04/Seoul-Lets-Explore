@@ -37,9 +37,6 @@
                   <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">정보창</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" onclick="location.href='http://localhost:{{port}}/map/'">지도창</a>
-                </li>
-                <li class="nav-item">
                   <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
                 </li>
                 <li class="nav-item">
@@ -85,7 +82,7 @@
   <!-- <button type="button" class="logout-btn" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</button> -->
 {% else %}
   <!-- 전체 폼 -->
-  <form id="login-form" class= "login-form" action="/user/login" method="post">
+  <form id="login-form" class="login-form" action="/user/login" method="post">
     <!-- 일반 로그인 필드 -->
     <input type="text" name="username" placeholder="아이디" required />
     <input type="password" name="password" placeholder="비밀번호" required />
@@ -98,8 +95,7 @@
 
     <!-- 회원가입 버튼 -->
     <button type="button" class="signup-btn" onclick="location.href='http://localhost:{{port}}/user/sign-up'">회원가입</button>
-    
-  </form>
+</form>
 <!-- 경고창 영역 -->
 <div id="alert-div" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
   <strong>경고!</strong> 일치하지 않거나 없는 정보입니다.

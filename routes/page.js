@@ -10,7 +10,7 @@ router.get('/',isLoggedIn,async(req,res,next)=>{//사용자 페이지 메인 화
         const userId = req.user.id;
         const user = await User.findOne({
             where: {id: userId},
-            attributes: ['name']
+            attributes: ['name','id']
         })
         res.render('user-page',{
             port: process.env.PORT,

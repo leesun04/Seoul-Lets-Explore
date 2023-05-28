@@ -1,4 +1,4 @@
-/* 전체 폼 스타일 */
+/* 전체 폼 스타일
   /* .login-form {
     display: flex;
     flex-direction: column;
@@ -91,4 +91,3 @@
   button[type="button"].kakao-login:hover {
     background-color: #f0d100;
   }
-  

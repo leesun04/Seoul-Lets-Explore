@@ -21,7 +21,7 @@ dotenv.config(); // .env 파일을 읽어서 process.env로 만든다. (dotenv =
 passportConfig(); // 초기 세팅 1
 
 const app = express();
-app.set('port', process.env.PORT || 5000);
+app.set('port', process.env.PORT || 3000);
 
 app.set('view engine', 'html');
 nunjucks.configure(path.join(__dirname, 'UI'), {
@@ -77,7 +77,6 @@ app.use('/page', pageRouter)
 app.use((req, res, next) => {
     res.locals.title = require('./package.json').name;
     res.locals.port = process.env.PORT;
-    console.log(process.env.PORT);
     res.locals.user = req.user;
     res.render('main');
 });

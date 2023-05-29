@@ -10,7 +10,7 @@ const nunjucks = require('nunjucks');
 const { sequelize } = require('./models');
 
 const passport = require('passport'); // passport 패키지
-const passportConfig = require('./passport'); // 
+const passportConfig = require('./passport'); 
 
 const userRouter = require('./routes/user');
 const travelSpots = require('./routes/TravelSpot');
@@ -64,10 +64,6 @@ app.use(passport.initialize());
 
 //req.session 객체에 passport 정보를 저장함.
 app.use(passport.session()); // 세션 객체의 유저정보를 저장해주는 일
-
-// app.get('/', (req,res)=>{
-//     res.sendFile(path.join(__dirname, '/map.html'));
-// })
 
 app.use('/user', userRouter);
 app.use('/travelSpot', travelSpots);

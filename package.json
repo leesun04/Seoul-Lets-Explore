@@ -1,12 +1,12 @@
 {
-  "name": "step4",
+  "name": "seoul",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
   "scripts": {
     "start": "nodemon"
   },
-  "author": "Prof. Wonvin Kim, Computer Software, Korean Bibie University",
+  "author": "Seonjae Lee, Computer Software, Korean Bibie University",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

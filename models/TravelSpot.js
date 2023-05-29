@@ -62,6 +62,7 @@ module.exports = class TravelSpot extends Sequelize.Model {
         });
     }
     static associate(db) {
-        db.TravelSpot.belongsTO(db.User, )
-    } 
+        db.Cart.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId' });
+        db.Cart.belongsTo(db.TravelSpot, { foreignKey: 'tourId', targetKey: 'tourId' });
+    }
 };

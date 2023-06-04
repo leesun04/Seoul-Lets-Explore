@@ -58,11 +58,10 @@ module.exports = class TravelSpot extends Sequelize.Model {
             tableName: 'travelSpots',
             paranoid: false,
             charset: 'utf8mb4',
-            collate: 'utf8mb4_general_ci',
+            collate: 'utf8mb4_general_ci'
         });
-    }
+    };
     static associate(db) {
-        db.Cart.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId' });
-        db.Cart.belongsTo(db.TravelSpot, { foreignKey: 'tourId', targetKey: 'tourId' });
-    }
+        db.TravelSpot.hasMany(db.Cart,{foreignKey: 'cartId',sourceKey:'tourId',onDelete: 'cascade'})
+    };
 };

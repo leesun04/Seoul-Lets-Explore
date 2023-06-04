@@ -1,4 +1,3 @@
-const { STRING } = require('sequelize');
 const Sequelize = require('sequelize');
 
 module.exports = class User extends Sequelize.Model {
@@ -31,8 +30,8 @@ module.exports = class User extends Sequelize.Model {
             charset: 'utf8mb4',
             collate: 'utf8mb4_general_ci',
         });
-    }
+    };
     static associate(db) {
-        db.User.hasMany(db.Cart, {foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade'});
-    }
-};
+        db.User.hasOne(db.Cart, {foreignKey: 'cartId', sourceKey: 'userId', onDelete: 'cascade'});
+    };
+}

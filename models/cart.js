@@ -17,8 +17,7 @@ module.exports = class Cart extends Sequelize.Model {
                 type: Sequelize.BIGINT,
                 allowNull: false
             }
-        },
-        {
+        },{
             sequelize,
             timestamps: false,
             modelName: 'Cart',
@@ -27,7 +26,8 @@ module.exports = class Cart extends Sequelize.Model {
             collate: 'utf8mb4_general_ci'
         });
     };
-    static associations(db) {
-        db.Cart.belongsTo(db.User,{foreignKey: 'userId', targetKey: 'userId'});
-    }
+    static associate(db) {
+        db.Cart.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId'});
+        db.Cart.belongsTo(db.TravelSpot, { foreignKey: 'tourId', targetKey: 'tourId'});
+    };
 }

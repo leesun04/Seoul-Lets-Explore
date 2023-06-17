@@ -73,4 +73,11 @@ router.get('/kakao/callback',
     (req, res) => res.redirect('/')
 );
 
+router.route('/profile')
+.get((req,res,next)=>{
+    const user = req.user;
+    res.render('profile', {user});
+})
+.port(async)
+
 module.exports = router;

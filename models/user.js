@@ -32,6 +32,6 @@ module.exports = class User extends Sequelize.Model {
         });
     };
     static associate(db) {
-        db.User.hasOne(db.Cart, {foreignKey: 'cartId', sourceKey: 'userId', onDelete: 'cascade'});
+        db.User.hasOne(db.Cart, { foreignKey: 'userId', sourceKey: 'userId' });
     };
 }

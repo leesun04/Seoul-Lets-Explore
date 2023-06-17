@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{user.name}} 페이지 정보</title>
+    <title>사용자 페이지 정보</title>
     <link rel="stylesheet" href="/css/navar.css">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,9 +28,6 @@
               </div>
               <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                  <li class="nav-item">
-                    {{profile.profileName or user.name}}님 환영합니다!<br>
-                  </li>
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
                   </li>
@@ -57,8 +54,10 @@
                 <div class="card">
                     <div class="card-body text-center">
                         <img src="/프로필대체.jpg" alt="" class="rounded-circle mb-3" width="150">
-                        <h4 class="card-title">{{user.name}}</h4>
-                        <h4 class="card-title">{{user.id}}</h4>
+                        <h4 class="card-title">사용자 이름: {{user.name}}</h4>
+                        <h4 class="card-title">사용자 ID: {{user.id}}</h4>
+                        <button class="btn btn-primary">사용자 정보 수정</button>
+                        <button class="btn btn-danger">사용자 탈퇴</button>                        
                     </div>
                 </div>
             </div>

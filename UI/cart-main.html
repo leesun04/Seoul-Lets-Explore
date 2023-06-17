@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 장바구니</title>
+</head>
+<body>
+    {% for cart in carts %}
+          <h3>{{ cart.id }}</h3>
+  {% endfor %}
+</body>
+</html>

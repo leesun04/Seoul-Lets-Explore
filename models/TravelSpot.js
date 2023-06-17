@@ -36,11 +36,11 @@ module.exports = class TravelSpot extends Sequelize.Model {
             },//개요
             phone: {
                 type: Sequelize.TEXT,
-                allowNull: true
+                allowNull: false
             },//전화번호
             rest: {
                 type: Sequelize.TEXT,
-                allowNull: true
+                allowNull: false
             },//쉬는날
             time: {
                 type: Sequelize.TEXT,
@@ -62,6 +62,6 @@ module.exports = class TravelSpot extends Sequelize.Model {
         });
     };
     static associate(db) {
-        db.TravelSpot.hasMany(db.Cart,{foreignKey: 'cartId',sourceKey:'tourId',onDelete: 'cascade'})
-    };
+        db.TravelSpot.belongsToMany(db.Cart, { through: 'CartTravelSpot', foreignKey: 'tourId' });
+        }
 };

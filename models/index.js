@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const User = require('./user');
 const TravelSpot = require('./TravelSpot');
 const Cart = require('./cart')
+const CartTravelSpot = require('./CartTravelSpot');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
@@ -17,13 +18,16 @@ db.Sequelize = Sequelize;
 db.User = User;
 db.TravelSpot = TravelSpot;
 db.Cart = Cart;
+db.CartTravelSpot = CartTravelSpot;
 
 User.init(sequelize);
 TravelSpot.init(sequelize);
 Cart.init(sequelize);
+CartTravelSpot.init(sequelize);
 
 User.associate(db);
 TravelSpot.associate(db);
 Cart.associate(db);
+CartTravelSpot.associate(db);
 
 module.exports = db;

@@ -73,11 +73,48 @@ router.get('/kakao/callback',
     (req, res) => res.redirect('/')
 );
 
-router.route('/profile')
-.get((req,res,next)=>{
+router.route('/profile') // 사용자 정보 수정 라우터
+  .get((req, res, next) => {
     const user = req.user;
-    res.render('profile', {user});
-})
-.port(async)
+    res.render('profile', { user });
+  })
+  .post(async (req, res, next) => {
+    const { id, password, name } = req.body;
+
+    if (!id || !password || !name) {
+      return res.send({
+        result: 'fail',
+        error: '모든 필드를 입력하세요.'
+      });
+    }
+
+    try {
+        const existingUser = await User.findOne({ where: { id } });
+        if (existingUser && existingUser.id !== req.user.id) {
+          return res.send({
+            result: 'fail',
+            error: '이미 존재하는 사용자 아이디입니다.'
+          });
+        }
+        const user = req.user;
+        user.id = id;
+    
+      if (password) {
+        const hash = await bcrypt.hash(password, 12);
+        user.password = hash;
+      }
+
+      if (name) {
+        user.name = name;
+      }
+
+      await user.save();
+      res.redirect('/page/');
+    } catch (err) {
+      console.error(err);
+      next(err);
+    }
+  });
+
 
 module.exports = router;

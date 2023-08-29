@@ -29,34 +29,35 @@
     .nav-link {
       color: #fff !important; /* White text */
     }
+    .center-text {
+      text-align: center;
+      font-size: 5rem; /* Adjust the font size as needed */
+      color: #fff; /* Text color */
+      margin-top: 30vh;
+    }
   </style>
 </head>
 <body>
   {% if user %}
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-      <a class="navbar-brand">Seoul Let's Explore</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" aria-current="page" id="home-link" href="#">Home</a></li>
-          <li class="nav-item"><a class="nav-link" id="info-link" href="#">정보창</a></li>
+          <li class="nav-item"><a class="nav-link" id="info-link" href="#">서울 여행지</a></li>
           <li class="nav-item"><a class="nav-link" id="user-link" href="#">사용자 페이지</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">커뮤니티 게시판</a></li>
+          <li class="nav-item"><a class="nav-link" id="user-plan" href="#">여행 일정</a></li>
           <li class="nav-item"><a class="nav-link" id="logout-link" href="#">로그아웃</a></li>
         </ul>
       </div>
     </div>
   </nav>
+  <div class="center-text">Seoul Let's Explore</div>
+
   
   <!-- Custom script -->
   <script>
-    document.getElementById("home-link").addEventListener("click", function(){
-      // Handle click event for "메인화면창"
-      window.location.href = "http://localhost:{{port}}";
-    });
-
     document.getElementById("info-link").addEventListener("click", function() {
-      // Handle click event for "정보창"
+      // Handle click event for "서울 여행지"
       window.location.href = "http://localhost:{{port}}/travelSpot/";
     });
 
@@ -64,6 +65,10 @@
       // Handle click event for "사용자 페이지"
       window.location.href = "http://localhost:{{port}}/page/";
     });
+
+    document.getElementById("user-plan").addEventListener("click", function(){
+      window.location.href = "http://localhost:{{port}}/tour/"
+    })
 
     document.getElementById("logout-link").addEventListener("click", function() {
       // Handle click event for "로그아웃"
@@ -92,6 +97,7 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endif %}
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

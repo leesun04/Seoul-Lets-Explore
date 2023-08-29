@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <head>
     <title>관광지 리스트</title>
-    <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/navar.css">
     <link rel="stylesheet" href="/css/tour.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -26,13 +25,13 @@
                 <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">정보창</a>
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">서울 여행지</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/community.html">커뮤니티 게시판</a>
+                <a class="nav-link" href="/community.html">여행 일정</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
@@ -48,6 +47,13 @@
       <div class="tour-item">
         <button type="button" class="tour-form" onclick="location.href='http://localhost:{{port}}/{{api}}/{{travelSpot.tourId}}'">
           <div class="tour-info">
+            <div class="tour-image">
+              {% if travelSpot.image %}
+                <img src="프로필대체.jpg" alt="{{ travelSpot.name }}">
+              {% else %}
+                <img src="이미지_없음_이미지_경로" alt="이미지 없음">
+              {% endif %}
+            </div>
             <h3 style="font-size: 18px;">{{ travelSpot.name }}</h3>
             <p style="font-size: 14px;">{{ travelSpot.description }}</p>
           </div>
@@ -55,6 +61,7 @@
       </div>
       {% endfor %}
     </div>
+    
   </p>
   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

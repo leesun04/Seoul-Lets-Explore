@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>여행 일정</title>
+  <link rel="stylesheet" href="/css/navar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+    <nav class="navbar sticky-top">
+        <div class="container-fluid">
+            <div class="mx-auto">
+            <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">Seoul Let's Explore</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">서울 여행지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/community.html">여행 일정</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </nav>   
+
+  <div class="container mt-5">
+    <h2 class="mb-4">여행 일정</h2>
+    <div class="form-group">
+      <label for="dateDropdown">날짜 선택:</label>
+      <select class="form-control" id="dateDropdown">
+        <option value="1">1일차</option>
+        <option value="2">2일차</option>
+        <option value="3">3일차</option>
+        <!-- 추가 날짜 옵션을 여기에 추가 -->
+      </select>
+    </div>
+    <div id="selectedDay" class="mt-4">
+      <!-- 선택한 날짜에 해당하는 일정 내용을 표시할 공간 -->
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // 날짜 선택 시 해당하는 일정 내용을 표시하는 함수
+    document.getElementById('dateDropdown').addEventListener('change', function() {
+      var selectedDay = this.value;
+      var dayContent = getDayContent(selectedDay); // 선택한 날짜에 따라 내용을 가져오는 함수
+      document.getElementById('selectedDay').innerHTML = dayContent;
+    });
+    
+    // 날짜에 따라 일정 내용을 가져오는 함수 (예시)
+    function getDayContent(selectedDay) {
+      switch (selectedDay) {
+        case '1':
+          return '<h4>1일차: 도착 및 숙소 이동</h4><p>도착해서 숙소로 이동합니다.</p>';
+        case '2':
+          return '<h4>2일차: 관광지 탐방</h4><p>여러 관광지를 탐방합니다.</p>';
+        case '3':
+          return '<h4>3일차: 쇼핑</h4><p>지역의 쇼핑 명소를 방문합니다.</p>';
+        // 추가 날짜에 대한 내용을 여기에 추가
+        default:
+          return '<p>일정이 준비되지 않았습니다.</p>';
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-
+<html lang="ko" class="h-100">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>회원 가입 페이지</title>
+    <link rel="stylesheet" href="/css/navar.css">
     <link rel="stylesheet" href="/css/login.css">
+    <style>
+        body {
+            background-image: url('./서울풍경.jpg') !important;
+            background-color: gray; /* 대체 색상 */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+    </style>
 </head>
-
 <body>
     <p>
     <form id="login-form" action="/user/sign-up" method="post">
@@ -15,5 +26,4 @@
     </form>
     </p>
 </body>
-
 </html>

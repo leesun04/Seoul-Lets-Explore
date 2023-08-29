@@ -18,13 +18,14 @@
     border-radius: 10px;
     font-size: 10px;
     color: white;
-    background-color: #4CAF50;
+    background-color: rgba(0, 0, 0, 0.7);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
   
   button.tour-form:hover {
-    background-color: #3e8e41;
+    background-color: whitesmoke;
+    color: black;
   }
   
   img.tour-image {

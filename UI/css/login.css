@@ -37,7 +37,7 @@
     border-radius: 5px;
     font-size: 18px;
     color: white;
-    background-color: #4CAF50;
+    background-color: black;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     /* 로그인 버튼에 대한 스타일 */
@@ -50,7 +50,7 @@
     border-radius: 5px;
     font-size: 18px;
     color: white;
-    background-color: #4CAF50;
+    background-color: black;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     /* 로그아웃 버튼에 대한 스타일 */
@@ -63,7 +63,7 @@
     border-radius: 5px;
     font-size: 18px;
     color: white;
-    background-color: #4CAF50;
+    background-color: black;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     /* 회원가입 버튼에 대한 스타일 */

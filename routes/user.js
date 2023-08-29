@@ -5,7 +5,7 @@ const User = require('../models/user');
 
 const router = express.Router();
 
-router.route('/sign-up')
+router.route('/sign-up')//로그인 및 회원가입 라우터
     .get((_, res) => {
         res.render('sign-up', {
             port: process.env.PORT
@@ -40,7 +40,7 @@ router.route('/sign-up')
 
 // localhost:5000/user/login
 // 서버 코드
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res, next) => {//로그인값 라우터
     passport.authenticate('local', (authError, user, info) => {
       if (user) {
         req.login(user, loginError => {
@@ -79,9 +79,9 @@ router.route('/profile') // 사용자 정보 수정 라우터
     res.render('profile', { user });
   })
   .post(async (req, res, next) => {
-    const { id, password, name } = req.body;
+    const { password, name } = req.body;
 
-    if (!id || !password || !name) {
+    if (!password || !name) {
       return res.send({
         result: 'fail',
         error: '모든 필드를 입력하세요.'
@@ -89,16 +89,7 @@ router.route('/profile') // 사용자 정보 수정 라우터
     }
 
     try {
-        const existingUser = await User.findOne({ where: { id } });
-        if (existingUser && existingUser.id !== req.user.id) {
-          return res.send({
-            result: 'fail',
-            error: '이미 존재하는 사용자 아이디입니다.'
-          });
-        }
-        const user = req.user;
-        user.id = id;
-    
+      const user = req.user;
       if (password) {
         const hash = await bcrypt.hash(password, 12);
         user.password = hash;
@@ -115,6 +106,21 @@ router.route('/profile') // 사용자 정보 수정 라우터
       next(err);
     }
   });
+
+  router.route('/delete')
+  .post(async(req,res,next)=>{
+    const user = req.user;
+    try{
+      await User.destroy({where: {id:user.id}});
+      req.logout();
+      req.session.destroy();
+      res.redirect('/')
+    }
+    catch(err){
+      console.log(err);
+      next(err);
+    }
+  })
 
 
 module.exports = router;

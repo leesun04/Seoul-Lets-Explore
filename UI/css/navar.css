@@ -1,10 +1,9 @@
 .navbar-brand{
-    color: #212529;
-    font-size: 1.5rem;
+    color: #fff !important;
     font-weight: bold;
   }
   .navbar{
-    background-color: #fcd752;
+    background-color: rgba(0, 0, 0, 0.7);
   }
   nav{
     height: 100%;
@@ -14,5 +13,3 @@
     background-color: #333; /* 원하는 배경 색으로 변경 */
     color: white; /* 글자 색을 흰색으로 변경 */
   }
-  
-  

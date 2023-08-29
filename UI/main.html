@@ -1,96 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" class="h-100">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seoul tour</title>
-    <link rel="stylesheet" href="/css/navar.css">
-    <link rel="stylesheet" href="/css/login.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seoul Tour</title>
+  <link rel="stylesheet" href="/css/navar.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <style>
+    body {
+      background-image: url("서울풍경.jpg"); /* Add your image URL here */
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif; /* Change font if desired */
+    }
+
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    }
+
+    .navbar-brand {
+      color: #fff !important; /* White text */
+      font-weight: bold;
+    }
+
+    .nav-link {
+      color: #fff !important; /* White text */
+    }
+  </style>
 </head>
 <body>
-    {% if user %}
-    <nav class="navbar sticky-top">
-      <div class="container-fluid">
-          <div class="mx-auto">
-          <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">Seoul Let's Explore</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">정보창</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/community.html">커뮤니티 게시판</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-    </nav>  
-    <div class="container my-5">
-      <div class="row">
-        <div class="col-lg-6">
-          <h1 class="display-4 mb-4">서울시 관광 안내 사이트</h1>
-          <p class="lead">서울은 대한민국의 수도이자, 25개 구로 나뉘어지는 특별시입니다. 600년 이상의 역사를 지닌 서울은 한국의 정치, 경제, 문화 중심지로 발전해 왔습니다. 서울에는 세계문화유산인 조선왕조의 벽화, 궁중의 아름다운 정원, 전통시장, 역사문화유적 등 다양한 관광지가 있습니다.</p>
-          <p>이 웹사이트는 서울시의 관광지 정보를 제공하고, 방문객들이 쉽게 서울시 내의 관광지를 찾아볼 수 있도록 돕습니다.</p>
-          <!-- <p><a href="/search.html" class="btn btn-primary">검색창</a></p> -->
-        </div>
-        <div class="col-lg-6 text-center">
-          <img src="야경.jpg" alt="이미지 준비중" class="img-fluid rounded-circle" style="max-width: 300px;">
-        </div>
+  {% if user %}
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+      <a class="navbar-brand">Seoul Let's Explore</a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" aria-current="page" id="home-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" id="info-link" href="#">정보창</a></li>
+          <li class="nav-item"><a class="nav-link" id="user-link" href="#">사용자 페이지</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">커뮤니티 게시판</a></li>
+          <li class="nav-item"><a class="nav-link" id="logout-link" href="#">로그아웃</a></li>
+        </ul>
       </div>
     </div>
-    <footer class="bg-light py-5">
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-lg-12">
-            <h2 class="mb-4">Social</h2>
-            <ul class="list-inline" style="margin-bottom: 0;">
-              <li class="list-inline-item"><a href="#">Twitter</a></li>
-              <li class="list-inline-item"><a href="#">Facebook</a></li>
-              <li class="list-inline-item"><a href="#">Instagram</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-    
-    
-    
-{% else %}
-  <!-- 전체 폼 -->
-  <form id="login-form" class="login-form" action="/user/login" method="post">
-    <!-- 일반 로그인 필드 -->
-    <input type="text" name="username" placeholder="아이디" required />
-    <input type="password" name="password" placeholder="비밀번호" required />
+  </nav>
+  
+  <!-- Custom script -->
+  <script>
+    document.getElementById("home-link").addEventListener("click", function(){
+      // Handle click event for "메인화면창"
+      window.location.href = "http://localhost:{{port}}";
+    });
 
-    <!-- 일반 로그인 버튼 -->
-    <button type="submit" class="login-btn">로그인</button>
+    document.getElementById("info-link").addEventListener("click", function() {
+      // Handle click event for "정보창"
+      window.location.href = "http://localhost:{{port}}/travelSpot/";
+    });
 
-    <!-- 카카오 로그인 버튼 -->
-    <button type="button" class="kakao-login" onclick="location.href='http://localhost:{{port}}/user/kakao'">카카오로 로그인</button>
+    document.getElementById("user-link").addEventListener("click", function() {
+      // Handle click event for "사용자 페이지"
+      window.location.href = "http://localhost:{{port}}/page/";
+    });
 
-    <!-- 회원가입 버튼 -->
-    <button type="button" class="signup-btn" onclick="location.href='http://localhost:{{port}}/user/sign-up'">회원가입</button>
+    document.getElementById("logout-link").addEventListener("click", function() {
+      // Handle click event for "로그아웃"
+      window.location.href = "http://localhost:{{port}}/user/logout";
+    });
+  </script>
+  {% else %}
+ <!-- 전체 폼 -->
+ <form id="login-form" class="login-form" action="/user/login" method="post">
+  <!-- 일반 로그인 필드 -->
+  <input type="text" name="username" placeholder="아이디" required />
+  <input type="password" name="password" placeholder="비밀번호" required />
+
+  <!-- 일반 로그인 버튼 -->
+  <button type="submit" class="login-btn">로그인</button>
+
+  <!-- 카카오 로그인 버튼 -->
+  <button type="button" class="kakao-login" onclick="location.href='http://localhost:{{port}}/user/kakao'">카카오로 로그인</button>
+
+  <!-- 회원가입 버튼 -->
+  <button type="button" class="signup-btn" onclick="location.href='http://localhost:{{port}}/user/sign-up'">회원가입</button>
 </form>
 <!-- 경고창 영역 -->
 <div id="alert-div" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
@@ -98,6 +92,6 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endif %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-</body>    
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

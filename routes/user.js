@@ -103,12 +103,12 @@ router.route('/profile') // 사용자 정보 수정 라우터
       res.redirect('/page/');
     } catch (err) {
       console.error(err);
-      next(err);
+      next(err);  
     }
   });
 
-  router.route('/delete')
-  .post(async(req,res,next)=>{
+  //router.post('/delete')//사용자 탈퇴 
+  router.get('/delete',async(req,res,next)=>{
     const user = req.user;
     try{
       await User.destroy({where: {id:user.id}});

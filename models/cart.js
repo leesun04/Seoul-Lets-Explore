@@ -22,6 +22,5 @@ module.exports = class Cart extends Sequelize.Model {
   };
   static associate(db) {
     db.Cart.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'userId' });
-    db.Cart.belongsToMany(db.TravelSpot, { through: 'CartTravelSpot', foreignKey: 'id' });
-}
+  }
 };

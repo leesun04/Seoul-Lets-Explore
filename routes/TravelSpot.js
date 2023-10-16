@@ -1,61 +1,96 @@
 const path = require('path');
+const fs = require('fs');
 const express = require('express');
-const { TravelSpot,Cart } = require('../models');
+const { Place } = require('../models');
 const router = express.Router();
 const { isLoggedIn } = require('./helpers');
 const { off } = require('process');
 
-router.get('/', isLoggedIn, async(req,res,next)=>{//여행지 리스트 전부를 불러오는 기능
-    try{
-        const travelSpots = await TravelSpot.findAll({});
-        res.render('tour-list',{
-            port: process.env.PORT,
-            api: 'travelSpot/info',
-            travelSpots: travelSpots.map(v=>v)
+router.get('/', isLoggedIn, async (req, res, next) => {
+    try {
+        const page = req.query.page || 1; // 현재 페이지 번호를 가져옵니다.
+        const perPage = 12; // 페이지당 표시할 여행지 수를 설정하세요.
+
+        // 전체 여행지의 수를 가져옵니다.
+        const totalTravelSpots = await Place.count();
+
+        // 페이지 수를 계산합니다.
+        const totalPages = Math.ceil(totalTravelSpots / perPage);
+
+        // 해당 페이지에 표시할 여행지 정보를 가져옵니다.
+        const offset = (page - 1) * perPage;
+        
+        const travelSpots = await Place.findAll({
+            offset: offset,
+            limit: perPage,
         });
-    }catch(err){
-        console.error(err)
-        next(err)
+
+        // 이미지 파일의 경로 설정 (여기서는 UI 폴더 내에 이미지 파일을 가정)
+        const imagePath = path.join(__dirname, '..', 'UI', '서울풍경.jpg');
+
+        fs.readFile(imagePath, (err, data) => {
+            if (err) {
+                console.error(err);
+                next(err);
+            } else {
+                // 이미지를 읽고 클라이언트에게 전달
+                res.render('tour-list', {
+                    port: process.env.PORT,
+                    api: 'travelSpot/info',
+                    travelSpots: travelSpots.map((v) => v),
+                    imageUrl: `data:image/jpeg;base64,${data.toString('base64')}`,
+                    currentPage: page,
+                    totalPages: totalPages, // 전체 페이지 수를 전달
+                });
+            }
+        });
+    } catch (err) {
+        console.error(err);
+        next(err);
     }
 });
 
-router.get('/', isLoggedIn, async(req,res,next)=>{//메인페이지 페이지네이션
-    try{
-        const page = parseInt(req.query.page) || 1; //현재 페이지 번호
-        const pageSize = 50; //페이지당 여행 수
-        const offset = (page-1) * pageSize; //목록에서 시작할 여행지 인덱스
-
-        const totalSpots = await TravelSpot.count();//전체 여행지 수 계산
-        const spots = await TravelSpot.findAll({
-            offset: offset,
-            limit: pageSize
+router.get('/info/:tourId', isLoggedIn, async (req, res, next) => {
+    try {
+        const travelSpot = await Place.findOne({
+            where: { tourId: req.params.tourId }
         });
 
-        res.render('tour-list',{
-            port: process.env.PORT,
-            api: 'travelSpot/info',
-            spots: spots.map(v=>v),
-            currentPage: page,
-            totalPages: Math.ceil(totalSpots/pageSize) //전체 페이지수 계산
+        // 이미지 파일의 경로 설정 (여기서는 UI 폴더 내에 이미지 파일을 가정)
+        const imagePath = path.join(__dirname, '..', 'UI', 'aaa.jpg');
+
+        // 이미지 파일을 읽어서 클라이언트에게 제공
+        fs.readFile(imagePath, (err, data) => {
+            if (err) {
+                console.error(err);
+                next(err);
+            } else {
+                // 이미지를 읽고 클라이언트에게 전달
+                res.render('tour-info', {
+                    port: process.env.PORT,
+                    travelSpot,
+                    imageUrl: `data:image/jpeg;base64,${data.toString('base64')}` // 이미지를 Base64로 변환하여 클라이언트에게 전달
+                });
+            }
         });
-    }catch(err){
-        console.error(err)
-        next(err)
-    };
+    } catch (err) {
+        console.error(err);
+        next(err);
+    }
 });
 
-router.get('/info/:tourId', async(req,res,next) => {//선택된 여행지의 정보를 보여주는 기능
+router.get('/restaurant/:tourId',isLoggedIn,async(req,res,next)=>{ //여행지 주변 식당 정보 api
     try{
-        const travelSpot = await TravelSpot.findOne({
-            where: {tourId: req.params.tourId}
+        const travelSpot = await Place.findOne({
+            where: {tourId:req.params.tourId}
         });
-        res.render('tour-info',{
-            port: process.env.PORT,
-            travelSpot       
+        res.render('restaurant',{
+            port:process.env.PORT,
+            travelSpot
         });
     }catch(err){
-        console.error(err)
-        next(err)
+        console.error(err);
+        next(err);
     }
 });
 

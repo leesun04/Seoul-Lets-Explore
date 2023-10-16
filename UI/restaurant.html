@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko" class="h-100">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>여행지 주변 식당</title>
+  <link rel="stylesheet" href="/css/navar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar sticky-top">
+    <div class="container-fluid">
+        <div class="mx-auto">
+        <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">Seoul Let's Explore</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">서울 여행지</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/tour/'">여행 일정</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </nav> 
+  
+  <div id="map" style="width:100%;height:540px;"></div>
+
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9f4d0205a090fe25ad1dcaf8530d560"></script>
+  <script>
+    window.onload = function() {
+        var mapContainer = document.getElementById('map');
+        var mapOption = {
+            center: new kakao.maps.LatLng(37.511024, 127.097872),
+            level: 3
+        };
+        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+        // 임의의 위치에 마커 표시
+        var markers = [
+            { latitude: 37.511024, longitude: 127.097872, name: "저자거리" },
+            { latitude: 37.51108, longitude: 127.098145, name: "모스버거" },
+            { latitude: 37.5125, longitude: 127.102778, name: "런던베이글" }
+        ];
+
+        for (var i = 0; i < markers.length; i++) {
+            var marker = new kakao.maps.Marker({
+                position: new kakao.maps.LatLng(markers[i].latitude, markers[i].longitude),
+                map: map
+            });
+
+            var infowindow = new kakao.maps.InfoWindow({
+                content: markers[i].name
+            });
+
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(infowindow, map, marker));
+        }
+
+        function makeClickListener(infowindow, map, marker) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

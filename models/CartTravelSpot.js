@@ -22,7 +22,7 @@ module.exports = class CartTravelSpot extends Sequelize.Model {
                     type: Sequelize.BIGINT,
                     allowNull: false,
                     references: {
-                        model: 'TravelSpot',
+                        model: 'place',
                         key: 'tourId'
                     }
                 }
@@ -44,12 +44,6 @@ module.exports = class CartTravelSpot extends Sequelize.Model {
         db.CartTravelSpot.belongsTo(db.Cart, {
             foreignKey: 'id',
             targetKey: 'id'
-        });
-
-        // CartTravelSpot 모델과 TravelSpot 모델의 관계 설정
-        db.CartTravelSpot.belongsTo(db.TravelSpot, {
-            foreignKey: 'tourId',
-            targetKey: 'tourId'
         });
     }
 };

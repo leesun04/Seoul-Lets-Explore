@@ -14,7 +14,7 @@ module.exports = class place extends Sequelize.Model {
                  allowNull: false
             },
             url: {//URL
-                type: Sequelize.INTEGER,
+                type: Sequelize.TEXT,
                 allowNull: true
             },
             address: {//주소
@@ -26,16 +26,16 @@ module.exports = class place extends Sequelize.Model {
                 allowNull: true
             },
             phone: {//폰번호
-                type: Sequelize.BIGINT,
-                allowNull: false
+                type: Sequelize.TEXT,
+                allowNull: true
             },
             site: {//웹사이트
                 type: Sequelize.TEXT,
-                allowNull: false
+                allowNull: true
             },
             time: {//운영시간
                 type: Sequelize.TEXT,
-                allowNull: false
+                allowNull: true
             },
             day: {//운영요일
                 type: Sequelize.TEXT,
@@ -64,5 +64,4 @@ module.exports = class place extends Sequelize.Model {
             collate: 'utf8mb4_general_ci'
         });
     };
-
 };

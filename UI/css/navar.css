@@ -1,6 +1,7 @@
 .navbar-brand{
     color: #fff !important;
     font-weight: bold;
+    text-align: center;
   }
   .navbar{
     background-color: black;

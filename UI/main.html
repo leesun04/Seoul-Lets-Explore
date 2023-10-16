@@ -10,6 +10,24 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <style>
+    .weather-container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent white background */
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .weather-title {
+      font-size: 1.2rem;
+      color: #fff;
+      margin-right: 10px;
+    }
+    
+    .weather-info {
+      font-size: 1.2rem;
+      color: #fff;
+    }
     body {
       background-image: url("서울풍경.jpg"); /* Add your image URL here */
       background-size: cover;
@@ -41,18 +59,64 @@
   {% if user %}
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
+      <!-- 서울 날씨 컨테이너 -->
+      <div class="weather-container">
+        <span class="weather-title">서울 기온:</span>
+        <span id="weather" class="weather-info"></span>
+      </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" id="info-link" href="#">서울 여행지</a></li>
-          <li class="nav-item"><a class="nav-link" id="user-link" href="#">사용자 페이지</a></li>
           <li class="nav-item"><a class="nav-link" id="user-plan" href="#">여행 일정</a></li>
+          <li class="nav-item"><a class="nav-link" id="user-chose" href="#">여행지 추천</a></li>
+          <li class="nav-item"><a class="nav-link" id="user-link" href="#">사용자 페이지</a></li>
           <li class="nav-item"><a class="nav-link" id="logout-link" href="#">로그아웃</a></li>
         </ul>
       </div>
     </div>
   </nav>
   <div class="center-text">Seoul Let's Explore</div>
+  <div class="container mt-4">
+    <div class="input-group mb-3">
+        <input type="search" id="searchKeyword" name="name" class="form-control rounded" placeholder="여행지를 입력해주세요" aria-label="Search" aria-describedby="search-addon" style="width: 100px;">
+        <button id="searchButton" class="btn btn-dark">검색</button>
+    </div>
+  </div>
 
+  <script>
+    // API 키 및 엔드포인트
+    const apiKey = '4dacbc32bd445bd63a345e2c70c72114'; // 여기에 자신의 API 키를 넣으세요.
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=${apiKey}&units=metric`;
+
+    // HTML 요소 가져오기
+    const weatherElement = document.getElementById('weather');
+
+    // API 호출 및 데이터 표시
+    fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        const temperature = data.main.temp;
+        const weatherText = `${temperature}°C`;
+        weatherElement.textContent = weatherText;
+    })
+    .catch(error => {
+        console.error('날씨 정보를 가져오는 중 오류가 발생했습니다.', error);
+    });
+  </script>
+
+  <script>
+    // Define searchButton and searchKeyword
+    const searchKeyword = document.getElementById('searchKeyword');
+    const searchButton = document.getElementById('searchButton');
+  
+    searchButton.addEventListener('click', function () {
+      const keyword = searchKeyword.value;
+      const searchURL = `/search?name=${keyword}`;
+
+      // 페이지 리다이렉션
+      window.location.href = searchURL;
+    });
+  </script>
   
   <!-- Custom script -->
   <script>
@@ -75,9 +139,10 @@
       window.location.href = "http://localhost:{{port}}/user/logout";
     });
   </script>
+
   {% else %}
  <!-- 전체 폼 -->
- <form id="login-form" class="login-form" action="/user/login" method="post">
+  <form id="login-form" class="login-form" action="/user/login" method="post">
   <!-- 일반 로그인 필드 -->
   <input type="text" name="username" placeholder="아이디" required />
   <input type="password" name="password" placeholder="비밀번호" required />
@@ -91,11 +156,6 @@
   <!-- 회원가입 버튼 -->
   <button type="button" class="signup-btn" onclick="location.href='http://localhost:{{port}}/user/sign-up'">회원가입</button>
 </form>
-<!-- 경고창 영역 -->
-<div id="alert-div" class="alert alert-danger alert-dismissible fade show d-none" role="alert">
-  <strong>경고!</strong> 일치하지 않거나 없는 정보입니다.
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
 {% endif %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

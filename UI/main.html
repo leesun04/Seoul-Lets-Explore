@@ -75,7 +75,7 @@
       </div>
     </div>
   </nav>
-  <div class="center-text">Seoul Let's Explore</div>
+  <div class="center-text">Seoul, Let's Explore</div>
   <div class="container mt-4">
     <div class="input-group mb-3">
         <input type="search" id="searchKeyword" name="name" class="form-control rounded" placeholder="여행지를 입력해주세요" aria-label="Search" aria-describedby="search-addon" style="width: 100px;">
@@ -137,6 +137,11 @@
     document.getElementById("logout-link").addEventListener("click", function() {
       // Handle click event for "로그아웃"
       window.location.href = "http://localhost:{{port}}/user/logout";
+    });
+
+    document.getElementById("user-chose").addEventListener("click", function() {
+      // Handle click event for "추천"
+      window.location.href = "http://localhost:{{port}}/commend/commendList";
     });
   </script>
 

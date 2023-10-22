@@ -18,6 +18,7 @@ const pageRouter = require('./routes/page');
 const cartRouter = require('./routes/cart');
 const tourRouter = require('./routes/tourPlan');
 const searchRouter = require('./routes/search');
+const commendRouter = require('./routes/commend');
 
 dotenv.config(); // .env 파일을 읽어서 process.env로 만든다. (dotenv => dot(.) + env) 비밀 키들을 관리하기 위함.
 passportConfig(); // 초기 세팅 1
@@ -74,6 +75,7 @@ app.use('/page', pageRouter);
 app.use('/cart', cartRouter);
 app.use('/tour', tourRouter);
 app.use('/search', searchRouter);
+app.use('/commend', commendRouter);
 
 app.use((req, res, next) => {
     res.locals.title = require('./package.json').name;

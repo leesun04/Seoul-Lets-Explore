@@ -163,9 +163,8 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9f4d0205a090fe25ad1dcaf8530d560"></script>
   <script>
-    // 경도와 위도 값을 문자열로 가져왔으므로, 숫자로 변환
-    const latitude = 37.511024;
-    const longitude = 127.097872;
+    const latitude = '{{travelSpot.latitude}}';
+    const longitude = '{{travelSpot.longitude}}';
   
     // 카카오 지도 초기화
     kakao.maps.load(function() {

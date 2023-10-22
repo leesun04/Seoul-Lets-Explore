@@ -8,47 +8,63 @@ const { off } = require('process');
 
 router.get('/', isLoggedIn, async (req, res, next) => {
     try {
-        const page = req.query.page || 1; // 현재 페이지 번호를 가져옵니다.
-        const perPage = 12; // 페이지당 표시할 여행지 수를 설정하세요.
+        const page = req.query.page || 1;
+        const perPage = 12;
 
-        // 전체 여행지의 수를 가져옵니다.
         const totalTravelSpots = await Place.count();
-
-        // 페이지 수를 계산합니다.
         const totalPages = Math.ceil(totalTravelSpots / perPage);
 
-        // 해당 페이지에 표시할 여행지 정보를 가져옵니다.
         const offset = (page - 1) * perPage;
-        
         const travelSpots = await Place.findAll({
             offset: offset,
             limit: perPage,
         });
 
-        // 이미지 파일의 경로 설정 (여기서는 UI 폴더 내에 이미지 파일을 가정)
-        const imagePath = path.join(__dirname, '..', 'UI', '서울풍경.jpg');
-
-        fs.readFile(imagePath, (err, data) => {
+        // UI 폴더 내 모든 이미지 파일 가져오기
+        const uiFolder = path.join(__dirname, '..', 'UI');
+        fs.readdir(uiFolder, (err, files) => {
             if (err) {
                 console.error(err);
                 next(err);
-            } else {
-                // 이미지를 읽고 클라이언트에게 전달
-                res.render('tour-list', {
-                    port: process.env.PORT,
-                    api: 'travelSpot/info',
-                    travelSpots: travelSpots.map((v) => v),
-                    imageUrl: `data:image/jpeg;base64,${data.toString('base64')}`,
-                    currentPage: page,
-                    totalPages: totalPages, // 전체 페이지 수를 전달
-                });
+                return;
             }
+            // 이미지 파일 목록 필터링 (예: .jpg, .jpeg, .png, .gif 파일 등)
+            const imageFiles = files.filter(file => {
+                const fileExtension = path.extname(file).toLowerCase();
+                return ['.jpg'].includes(fileExtension);
+            });
+
+            // 각 여행지에 이미지 파일을 매칭하여 이미지 데이터를 생성
+            const travelSpotImages = [];
+            travelSpots.forEach((spot, index) => {
+                // 이미지 파일을 무작위로 선택하거나 다른 방식으로 매칭
+                const randomImageFileName = imageFiles[index % imageFiles.length];
+                const imagePath = path.join(uiFolder, randomImageFileName);
+                const imageBuffer = fs.readFileSync(imagePath);
+                const base64Image = `data:image/jpeg;base64,${imageBuffer.toString('base64')}`;
+                travelSpotImages.push(base64Image);
+            });
+
+            // 이미지를 읽고 클라이언트에게 전달
+            res.render('tour-list', {
+                port: process.env.PORT,
+                api: 'travelSpot/info',
+                travelSpots: travelSpots.map((v, i) => {
+                    // 각 여행지 정보에 이미지 데이터 추가
+                    v.imageData = travelSpotImages[i];
+                    return v;
+                }),
+                currentPage: page,
+                totalPages: totalPages,
+            });
         });
     } catch (err) {
         console.error(err);
         next(err);
     }
 });
+
+
 
 router.get('/info/:tourId', isLoggedIn, async (req, res, next) => {
     try {

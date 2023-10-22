@@ -46,8 +46,9 @@
         <!-- 여행지 목록을 반복해서 표시합니다. travelSpots 배열에 여행지 정보가 들어 있다고 가정합니다. -->
         {% for travelSpot in places %}
         <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src="{{ imageUrl }}" alt="관광지 이미지" class="card-img-top">
+            <div class="card mb-4 shadow-sm" style="width: 25rem;"> <!-- 카드 크기를 고정 -->
+                <!-- 이미지를 동적으로 설정 -->
+                <img src="{{ travelSpot.imageData }}" alt="{{ travelSpot.name }} 이미지" class="card-img-top" style="height: 200px;"> <!-- 이미지 크기를 고정 -->
                 <div class="card-body">
                     <h5 class="card-title">{{ travelSpot.name }}</h5>
                     <!-- <p class="card-text">{{ travelSpot.description }}</p> -->

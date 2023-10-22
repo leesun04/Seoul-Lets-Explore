@@ -9,7 +9,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
       body {
-        background-image: url("./서울풍경.jpg");
+        background-image: url({{imageUrl}});
+        background-size: cover;
         background-color: gray; /* 대체 색상 */
       }
     </style>
@@ -58,9 +59,9 @@
                         <img src="/프로필대체.jpg" alt="" class="rounded-circle mb-3" width="150">
                         <h4 class="card-title">사용자 이름: {{user.name}}</h4>
                         <h4 class="card-title">사용자 ID: {{user.id}}</h4>
-                        <button class="btn btn-primary" onclick="location.href='http://localhost:{{port}}/user/profile/'">사용자 정보 수정</button>
-                        <button class="btn btn-danger" onclick="location.href='http://localhost:{{port}}/user/delete'">사용자 탈퇴</button>                      
                     </div>
+                    <button class="btn btn-dark" onclick="location.href='http://localhost:{{port}}/user/profile/'">정보 수정</button>
+                    <button class="btn btn-danger" onclick="location.href='http://localhost:{{port}}/user/delete'">회원 탈퇴</button>                      
                 </div>
             </div>
         </div>

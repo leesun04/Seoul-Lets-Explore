@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관광지 리스트</title>
+    <link rel="stylesheet" href="/css/navar.css">
+    <link rel="stylesheet" href="/css/tour.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        .tour-image img { 
+            max-width: 150px;
+            max-height: 120px;
+        }
+    </style>
+</head>
+<body>
+  <nav class="navbar sticky-top">
+    <div class="container-fluid">
+        <div class="mx-auto">
+        <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">Seoul Let's Explore</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">서울 여행지</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/tour/'">여행 일정</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  </nav>  
+  <div class="container mt-4">
+    <div class="row">
+        <!-- 여행지 목록을 반복해서 표시합니다. travelSpots 배열에 여행지 정보가 들어 있다고 가정합니다. -->
+        {% for travelSpot in travelSpots %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="width: 25rem;"> <!-- 카드 크기를 고정 -->
+                <!-- 이미지를 동적으로 설정 -->
+                <img src="{{ travelSpot.imageData }}" alt="{{ travelSpot.name }} 이미지" class="card-img-top" style="height: 200px;"> <!-- 이미지 크기를 고정 -->
+                <div class="card-body">
+                    <h5 class="card-title">{{ travelSpot.name }}</h5>
+                    <!-- <p class="card-text">{{ travelSpot.description }}</p> -->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="location.href='http://localhost:{{port}}/commend'">관련 여행지 추천</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li class="page-item {% if currentPage == 1 %}disabled{% endif %}">
+          <a class="page-link" href="?page=1" aria-label="1">1</a>
+        </li>
+        <li class="page-item {% if currentPage == 2 %}disabled{% endif %}">
+          <a class="page-link" href="?page=2" aria-label="2">2</a>
+        </li>
+        <li class="page-item {% if currentPage == 3 %}disabled{% endif %}">
+          <a class="page-link" href="?page=3" aria-label="3">3</a>
+        </li>
+        <li class="page-item {% if currentPage == 4 %}disabled{% endif %}">
+          <a class="page-link" href="?page=4" aria-label="4">4</a>
+        </li>
+        <li class="page-item {% if currentPage == 5 %}disabled{% endif %}">
+          <a class="page-link" href="?page=5" aria-label="5">5</a>
+        </li>
+        <li class="page-item {% if currentPage == 6 %}disabled{% endif %}">
+          <a class="page-link" href="?page=6" aria-label="6">6</a>
+        </li>
+        <li class="page-item {% if currentPage == 7 %}disabled{% endif %}">
+          <a class="page-link" href="?page=7" aria-label="7">7</a>
+        </li>
+        <li class="page-item {% if currentPage == 8 %}disabled{% endif %}">
+          <a class="page-link" href="?page=8" aria-label="8">8</a>
+        </li>
+        <li class="page-item {% if currentPage == 9 %}disabled{% endif %}">
+          <a class="page-link" href="?page=9" aria-label="9">9</a>
+        </li>
+        <li class="page-item {% if currentPage == 10 %}disabled{% endif %}">
+          <a class="page-link" href="?page=10" aria-label="10">10</a>
+        </li>
+      </ul>
+    </nav>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+
+</html>

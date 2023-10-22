@@ -1,62 +1,65 @@
 const Sequelize = require('sequelize');
 
-module.exports = class place extends Sequelize.Model {
+module.exports = class Place extends Sequelize.Model {
     static init(sequelize) {
         return super.init({
-            tourId: {//관광지 id
+            tourId: {
                 type: Sequelize.BIGINT,
                 allowNull: false,
                 primaryKey: true,
                 autoIncrement: true
             },
-            name: {//관광지 이름
+            name: {
                  type: Sequelize.STRING,
                  allowNull: false
             },
-            url: {//URL
+            url: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            address: {//주소
+            address: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            newAddress: {//신주소
+            newAddress: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            phone: {//폰번호
+            phone: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            site: {//웹사이트
+            time: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            time: {//운영시간
+            day: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            day: {//운영요일
+            rest: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            rest: {//휴무일
+            traffic: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            traffic: {//교통 정보
+            tage: {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            tage: {//태그 정보
-                type: Sequelize.TEXT,
-                allowNull: true
+            latitude: {
+                type: Sequelize.DOUBLE, // 수정: 데이터 형식 변경
+                allowNull: false
+            },
+            longitude: {
+                type: Sequelize.DOUBLE, // 수정: 데이터 형식 변경
+                allowNull: false
             }
         }, {
             sequelize,
             timestamps: false,
-            // underscored: false,
             modelName: 'Place',
             tableName: 'place',
             paranoid: false,

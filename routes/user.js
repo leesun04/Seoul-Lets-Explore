@@ -2,27 +2,39 @@ const express = require('express');
 const passport = require('passport');
 const bcrypt = require('bcrypt')
 const User = require('../models/user');
-
+const fs = require('fs');
+const path = require('path');
+const { isLoggedIn } = require('./helpers');
 const router = express.Router();
 
 router.route('/sign-up')//로그인 및 회원가입 라우터
     .get((_, res) => {
+      const imagePath = path.join(__dirname, '..', 'UI', '서울풍경.jpg');
+      const imageBuffer = fs.readFileSync(imagePath);
+      const base64Image = imageBuffer.toString('base64');
+      const imageUrl = `data:image/jpeg;base64,${base64Image}`;
         res.render('sign-up', {
-            port: process.env.PORT
+            port: process.env.PORT,
+            imageUrl: imageUrl
         })
     })
     .post(async (req, res, next) => {
         const { id, password, name } = req.body;
         
-        if (!password) return next('비밀번호를 입력하세요.');
-
+        if (!id){
+          return res.redirect('/user/sign-up?error=아이디를 입력하세요');
+        }
+        if (!password){
+          return res.redirect('/user/sign-up?error=비밀번호를 입력하세요');
+        }
+        if (!name){
+          return res.redirect('/user/sign-up?error=이름을 입력하세요');
+        }
         const user = await User.findOne({ where: { id } });
         if (user) {
-            res.send({
-                result: 'fail',
-                error: '이미 등록된 사용자 아이디입니다'
-            })
-        }
+          // 이미 등록된 사용자 아이디인 경우, 오류 메시지를 포함하여 리다이렉트
+          return res.redirect('/user/sign-up?error=이미 등록된 사용자 아이디입니다');
+      }
 
         try {
             const hash = await bcrypt.hash(password, 12);
@@ -41,6 +53,7 @@ router.route('/sign-up')//로그인 및 회원가입 라우터
 // localhost:5000/user/login
 // 서버 코드
 router.post('/login', (req, res, next) => {//로그인값 라우터
+
     passport.authenticate('local', (authError, user, info) => {
       if (user) {
         req.login(user, loginError => {
@@ -74,18 +87,22 @@ router.get('/kakao/callback',
 );
 
 router.route('/profile') // 사용자 정보 수정 라우터
-  .get((req, res, next) => {
+  .get(isLoggedIn,(req, res, next) => {
+    const imagePath = path.join(__dirname, '..', 'UI', '빌딩불꽃.jpg');
+    const imageBuffer = fs.readFileSync(imagePath);
+    const base64Image = imageBuffer.toString('base64');
+    const imageUrl = `data:image/jpeg;base64,${base64Image}`;
     const user = req.user;
-    res.render('profile', { user });
+    res.render('profile', { 
+      user,
+      imageUrl: imageUrl
+    });
   })
-  .post(async (req, res, next) => {
+  .post(isLoggedIn,async (req, res, next) => {
     const { password, name } = req.body;
 
     if (!password || !name) {
-      return res.send({
-        result: 'fail',
-        error: '모든 필드를 입력하세요.'
-      });
+      return res.redirect('/user/profile?error=빈칸이 있습니다.');
     }
 
     try {
@@ -98,7 +115,6 @@ router.route('/profile') // 사용자 정보 수정 라우터
       if (name) {
         user.name = name;
       }
-
       await user.save();
       res.redirect('/page/');
     } catch (err) {

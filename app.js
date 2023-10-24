@@ -15,7 +15,6 @@ const passportConfig = require('./passport');
 const userRouter = require('./routes/user');
 const travelSpots = require('./routes/TravelSpot');
 const pageRouter = require('./routes/page');
-const cartRouter = require('./routes/cart');
 const tourRouter = require('./routes/tourPlan');
 const searchRouter = require('./routes/search');
 const commendRouter = require('./routes/commend');
@@ -72,7 +71,6 @@ app.use(passport.session()); // 세션 객체의 유저정보를 저장해주는
 app.use('/user', userRouter);
 app.use('/travelSpot', travelSpots);
 app.use('/page', pageRouter);
-app.use('/cart', cartRouter);
 app.use('/tour', tourRouter);
 app.use('/search', searchRouter);
 app.use('/commend', commendRouter);

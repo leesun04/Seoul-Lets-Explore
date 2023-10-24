@@ -3,178 +3,180 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>관광지 정보</title>
-    <link rel="stylesheet" href="/css/navar.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-    <style>
-      /* 이미지 스타일 */
-      .img-fluid {
-        max-width: 100%;
-        height: auto;
-      }
-    
-      /* 여행지 정보 스타일 */
-      .travel-spot-info {
-        font-size: 16px;
-        color: #333;
-        margin-top: 10px;
-      }
-    
-      .travel-spot-info__title {
-        font-weight: bold;
-        font-size: 30px;
-        margin-top: 20px;
-        text-align: center;
-      }
-      .travel-spot-info__name{
-        text-align: center;
-      }
-      .travel-spot-info_text{
-        text-align: left;
-      }
-    
-      /* 관광지 주소 스타일 */
-      .travel-spot-info__address {
-        font-weight: bold;
-      }
+  <title>관광지 정보</title>
+  <link rel="stylesheet" href="/css/navar.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+  <style>
+    /* 이미지 스타일 */
+    .img-fluid {
+      max-width: 150%;
+      height: auto;
+    }
 
-      .tour-form{
-        width: 135px;
-        height: 50px;
-        border: none;
-        border-radius: 10px;
-        font-size: 11px;
-        font-weight: bold;
-        color: white;
-        background-color: rgba(0, 0, 0, 0.7);
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-      }
-    
-      /* 컨테이너 스타일 */
-      .container {
-        padding-top: 20px;
-        text-align: center;
-      }
-    
-      /* 지도 스타일 */
-      #staticMap {
-        width: 98%;
-        height: 350px;
-        margin: 0 auto;
-      }
-    </style>
+    /* 여행지 정보 스타일 */
+    .travel-spot-info {
+      font-size: 16px;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    .travel-spot-info__title {
+      font-weight: bold;
+      font-size: 30px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .travel-spot-info__name {
+      text-align: center;
+    }
+
+    .travel-spot-info_text {
+      text-align: left;
+    }
+
+    /* 관광지 주소 스타일 */
+    .travel-spot-info__address {
+      font-weight: bold;
+    }
+
+    .tour-form {
+      width: 135px;
+      height: 50px;
+      border: none;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: bold;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* 컨테이너 스타일 */
+    .container {
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    /* 지도 스타일 */
+    #staticMap {
+      width: 98%;
+      height: 350px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
+
 <body>
   <nav class="navbar sticky-top">
     <div class="container-fluid">
-        <div class="mx-auto">
+      <div class="mx-auto">
         <a class="navbar-brand" onclick="location.href='http://localhost:{{port}}'">Seoul Let's Explore</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">메뉴</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">서울 여행지</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/tour/'">여행 일정</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
-              </li>
-            </ul>
-          </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" onclick="location.href='http://localhost:{{port}}'">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='http://localhost:{{port}}/travelSpot/'">서울 여행지</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='http://localhost:{{port}}/page/'">사용자 페이지</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='http://localhost:{{port}}/tour/'">여행 일정</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" onclick="location.href='http://localhost:{{port}}/user/logout'">로그아웃</a>
+            </li>
+          </ul>
         </div>
       </div>
-  </nav>   
- 
+    </div>
+  </nav>
+
   <h1 class="travel-spot-info__title" style="margin-bottom: 15px;">{{travelSpot.name}}</h1>
-    {% if travelSpot.address %}
-    <div class="travel-spot-info__name">{{travelSpot.address}}</div>
-    {% endif %}
+  {% if travelSpot.address %}
+  <div class="travel-spot-info__name">{{travelSpot.address}}</div>
+  {% endif %}
   <div class="container">
     <hr class="my-2">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{imageUrl}}" alt="관광지 이미지" class="img-fluid">
+        <img src="{{ travelSpotImage }}" alt="{{ travelSpot.name }} 이미지" class="img-fluid" style="width: 94%; max-height: 400px;">
       </div>
       <div class="col-md-6">
         <div class="travel-spot-info">
           {% if travelSpot.day %}
-            <div class="travel-spot-info_text">
-              <br><span class="travel-spot-info__address">운영 요일:</span>
-              {{travelSpot.day}}
-            </div>
+          <div class="travel-spot-info_text">
+            <br><span class="travel-spot-info__address">운영 요일:</span>
+            {{travelSpot.day}}
+          </div>
           {% endif %}
-      
+
           {% if travelSpot.time %}
-            <div class="travel-spot-info_text">
-              <br><span class="travel-spot-info__address">운영 시간:</span>
-              {{travelSpot.time}}
-            </div>
-          {% endif %} 
-      
+          <div class="travel-spot-info_text">
+            <br><span class="travel-spot-info__address">운영 시간:</span>
+            {{travelSpot.time}}
+          </div>
+          {% endif %}
+
           {% if travelSpot.phone %}
-            <div class="travel-spot-info_text">
-              <br><span class="travel-spot-info__address">전화번호:</span>
-              {{travelSpot.phone}}
-            </div>
-          {% endif %} 
-      
+          <div class="travel-spot-info_text">
+            <br><span class="travel-spot-info__address">전화번호:</span>
+            {{travelSpot.phone}}
+          </div>
+          {% endif %}
+
           {% if travelSpot.traffic %}
-            <div class="travel-spot-info_text">
-              <br><span class="travel-spot-info__address">교통 정보:</span>
-              {{travelSpot.traffic}}
-            </div>
+          <div class="travel-spot-info_text">
+            <br><span class="travel-spot-info__address">교통 정보:</span>
+            {{travelSpot.traffic}}
+          </div>
           {% endif %}
           <div style="margin-top: 40px;"> <!-- 여기에 margin-top 추가 -->
             <button type="button" class="tour-form" onclick="location.href='http://localhost:{{port}}/travelSpot/restaurant/{{travelSpot.tourId}}'">주변 맛집 위치정보 보기</button>
-          </div>        
+          </div>
         </div>
       </div>
-      
-      <hr class="my-2">
-      <div class="row">
+    </div>
+    <hr class="my-2">
+    <div class="row">
       <div id="staticMap"></div>
-      </div>
-      <hr class="my-2">
     </div>
-    <div>
-      <strong>태그 정보</strong>
-    </div>
-    <div class="travel-spot-info__name" style="margin-bottom: 10px;">
-      {{travelSpot.tage}}
-    </div>
+    <hr class="my-2">
+  </div>
+  <div>
+    <strong>태그 정보</strong>
+  </div>
+  <div class="travel-spot-info__name" style="margin-bottom: 10px;">
+    {{travelSpot.tage}}
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a9f4d0205a090fe25ad1dcaf8530d560"></script>
   <script>
     const latitude = '{{travelSpot.latitude}}';
     const longitude = '{{travelSpot.longitude}}';
-  
+
     // 카카오 지도 초기화
-    kakao.maps.load(function() {
+    kakao.maps.load(function () {
       var container = document.getElementById('staticMap');
       var options = {
         center: new kakao.maps.LatLng(latitude, longitude),
         level: 3
       };
       var map = new kakao.maps.Map(container, options);
-      
+
       // 지도에 마커 추가
       var markerPosition = new kakao.maps.LatLng(latitude, longitude);
       var marker = new kakao.maps.Marker({

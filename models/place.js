@@ -21,10 +21,6 @@ module.exports = class Place extends Sequelize.Model {
                 type: Sequelize.TEXT,
                 allowNull: true
             },
-            newAddress: {
-                type: Sequelize.TEXT,
-                allowNull: true
-            },
             phone: {
                 type: Sequelize.TEXT,
                 allowNull: true

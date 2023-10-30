@@ -51,4 +51,20 @@ router.post('/save-travel-plan', isLoggedIn, async (req, res, next) => {
     }
 });
 
+// 여행 계획 삭제
+router.get('/delete-plan/:planId', isLoggedIn, async (req, res, next) => {
+    console.log("서버에 들어옴")
+    try {
+        const planId = req.params.planId; // URL 매개변수에서 planId에 액세스
+        await Plan.destroy({ where: { planId } }); // 쿼리에서 planId 사용
+        console.log("이게 일정 아이디임");
+        console.log(planId);
+        res.redirect('/tour');
+    } catch (err) {
+        console.error(err);
+        next(err);
+    }
+});
+
+
 module.exports = router;

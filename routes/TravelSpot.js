@@ -86,19 +86,4 @@ router.get('/info/:tourId', isLoggedIn, async (req, res, next) => {
 });
 
 
-router.get('/restaurant/:tourId',isLoggedIn,async(req,res,next)=>{ //여행지 주변 식당 정보 api
-    try{
-        const travelSpot = await Place.findOne({
-            where: {tourId:req.params.tourId}
-        });
-        res.render('restaurant',{
-            port:process.env.PORT,
-            travelSpot
-        });
-    }catch(err){
-        console.error(err);
-        next(err);
-    }
-});
-
 module.exports = router;

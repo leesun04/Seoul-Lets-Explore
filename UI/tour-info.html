@@ -113,7 +113,7 @@
     <hr class="my-2">
     <div class="row">
       <div class="col-md-6">
-        <img src="{{ travelSpotImage }}" alt="{{ travelSpot.name }} 이미지" class="img-fluid" style="width: 94%; max-height: 400px;">
+        <img src="{{ travelSpotImage }}" alt="{{ travelSpot.name }} 이미지" class="img-fluid" style="width: 100%; max-height: 340px;">
       </div>
       <div class="col-md-6">
         <div class="travel-spot-info">
@@ -144,9 +144,6 @@
             {{travelSpot.traffic}}
           </div>
           {% endif %}
-          <div style="margin-top: 40px;"> <!-- 여기에 margin-top 추가 -->
-            <button type="button" class="tour-form" onclick="location.href='http://localhost:{{port}}/travelSpot/restaurant/{{travelSpot.tourId}}'">주변 맛집 위치정보 보기</button>
-          </div>
         </div>
       </div>
     </div>
@@ -156,9 +153,9 @@
     </div>
     <hr class="my-2">
   </div>
-  <div>
+  <div class="text-center">
     <strong>태그 정보</strong>
-  </div>
+</div>
   <div class="travel-spot-info__name" style="margin-bottom: 10px;">
     {{travelSpot.tage}}
   </div>
